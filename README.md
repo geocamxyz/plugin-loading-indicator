@@ -6,7 +6,7 @@ npm install 'https://gitpkg.now.sh/geocamxyz/plugin-loading-indicator/src?v1.0.0
 ```
 or for a particual commit version:
 ```
-npm install 'https://gitpkg.now.sh/geocamxyz/plugin-loading-indicatorsrc?29be18f'
+npm install 'https://gitpkg.now.sh/geocamxyz/plugin-loading-indicatorsrc?544c9fc'
 ```
 ### Import Map (External Loading):
 ```
@@ -14,7 +14,7 @@ https://cdn.jsdelivr.net/gh/geocamxyz/plugin-loading-indicator@v1.0.0/dist/loadi
 ```
 or for a particual commit version:
 ```
-https://cdn.jsdelivr.net/gh/geocamxyz/plugin-loading-indicator@29be18f/dist/loading-indicator.js
+https://cdn.jsdelivr.net/gh/geocamxyz/plugin-loading-indicator@544c9fc/dist/loading-indicator.js
 ```
 ### Usage:
 The .js file can be imported into your .html file using the below code (This can be ignored if your using the NPM package).
