@@ -1,10 +1,10 @@
-const s = (n, e = {}, i = "") => {
-  const o = document.createElement(n);
-  for (let a in e)
-    o.setAttribute(a, e[a]);
-  return o.innerHTML = i, o;
-}, p = (n, e) => (document.getElementById(n) || document.getElementsByTagName("head")[0].prepend(s("STYLE", { type: "text/css" }, e)), !0), u = function(n = {}) {
-  let e, i = [], o = [];
+const a = (n, e = {}, t = "") => {
+  const i = document.createElement(n);
+  for (let s in e)
+    i.setAttribute(s, e[s]);
+  return i.innerHTML = t, i;
+}, p = (n, e) => (document.getElementById(n) || document.getElementsByTagName("head")[0].prepend(a("STYLE", { type: "text/css" }, e)), !0), u = function(n = {}) {
+  let e, t = [], i = [];
   p("geocam-loading-indicator", `
     .geocam-loading-indicator-wrapper {
           display: flex;
@@ -19,45 +19,45 @@ const s = (n, e = {}, i = "") => {
           height: 6px;
           bottom: 0;
         }
-  `), this.init = function(t) {
-    e = t;
-    const l = s("DIV", { class: "geocam-loading-indicator-wrapper" });
-    for (var c = 0; c < 3; c++) {
-      const r = s("PROGRESS", {
+  `), this.init = function(o) {
+    e = o;
+    const l = a("DIV", { class: "geocam-loading-indicator-wrapper" });
+    for (var r = 0; r < 3; r++) {
+      const c = a("PROGRESS", {
         min: 0,
         max: 1,
         class: "geocam-loading-indicator-progress"
       });
-      i.push(r), l.appendChild(r), r.style.left = `${0.3333333333333333 * c}%`;
-      const d = e.progress[c]((g) => {
-        r.setAttribute("value", g);
+      t.push(c), l.appendChild(c), c.style.left = `${0.3333333333333333 * r}%`;
+      const d = e.progress[r]((g) => {
+        c.setAttribute("value", g);
       });
-      o.push(d);
+      i.push(d);
     }
     e.wrapper.appendChild(l);
   }, this.destroy = function() {
-    o.forEach((t) => t()), i.forEach((t) => e.wrapper.removeChild(t));
+    i.forEach((o) => o()), t.forEach((o) => e.wrapper.removeChild(o));
   };
 };
-class m extends HTMLElement {
+class h extends HTMLElement {
   constructor() {
     super(), this.plugin = null, console.log("loading-indicator init");
   }
   connectedCallback() {
-    console.log("loading-indicator connected");
+    console.log("loading-indicator connected"), this.plugin = new u();
     const e = this.parentNode;
-    e.viewer && e.viewer.plugin ? (this.plugin = new u(), e.viewer.plugin(this.plugin)) : console.error(
+    this.viewer = e.viewer, this.viewer && this.viewer.plugin ? this.viewer.plugin(this.plugin) : console.error(
       "GeocamViewerLocadingIndicator must be a child of GeocamViewer"
     );
   }
   disconnectedCallback() {
-    this.plugin = null, console.log("loading-indicator disconnected");
+    this.plugin = null, this.viewer = null, console.log("loading-indicator disconnected");
   }
 }
 window.customElements.define(
   "geocam-viewer-loading-indicator",
-  m
+  h
 );
 export {
-  m as GeocamViewerLoadingIndicator
+  h as GeocamViewerLoadingIndicator
 };
