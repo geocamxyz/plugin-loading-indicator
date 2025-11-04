@@ -10,18 +10,26 @@ export class GeocamViewerLoadingIndicator extends HTMLElement {
 
   connectedCallback() {
     console.log("loading-indicator connected");
-    const node = this;
-    this.plugin = new loadingIndicator();
-    const parent = this.parentNode;
-    this.viewer = parent.viewer;
-    if ( this.viewer &&  this.viewer.plugin) {
-      // Call a method on the parent
-        this.viewer.plugin(this.plugin);
-    } else {
+    const host = this.closest("geocam-viewer");
+    if (!host) {
       console.error(
         "GeocamViewerLocadingIndicator must be a child of GeocamViewer"
       );
+      return;
     }
+
+    const attach = () => {
+      const viewer = host.viewer;
+      if (viewer && typeof viewer.plugin === "function") {
+        this.viewer = viewer;
+        this.plugin = new loadingIndicator();
+        this.viewer.plugin(this.plugin);
+      } else {
+        setTimeout(attach, 50);
+      }
+    };
+
+    attach();
   }
 
   disconnectedCallback() {
