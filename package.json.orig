@@ -1,0 +1,16 @@
+{
+  "name": "loading-indicator",
+  "private": true,
+<<<<<<< HEAD
+  "version": "2.4.0rc2",
+=======
+  "version": "2.4.0rc3",
+>>>>>>> f224bc48c91e00badced85d87477018c9a5486d7
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^4.0.4"
+  }
+}
